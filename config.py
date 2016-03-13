@@ -1,0 +1,43 @@
+COMMENT_STYLES = {
+    'C':            ('/**', '*/'),
+    'C++':          ('/**', '*/'),
+    'Java':         ('/**', '*/'),
+    'Python':       '#',
+    'C#':           ('/**', '*/'),
+    'JavaScript':   ('/**', '*/'),
+    'Ada':          '--',
+    'AppleScript':  '--',
+    'BASIC':        'REM',
+    'HTML':         ('<!--', '-->'),
+    'XML':          ('<!--', '-->'),
+    'Haskell':      ('{-', '-}'),
+    'MATLAB':       ('%{', '%}'),
+    'Pascal':       ('(*', '*)'),
+    'Perl':         '#',
+    'PHP':          ('/**', '*/'),
+    'PowerShell':   ('<#', '#>'),
+    'Ruby':         '#',
+    'SQL':          '--'
+}
+
+FILE_EXTENSIONS = {
+    'C':            ('.c', '.h'),
+    'C++':          ('.cc', '.cpp', '.cxx', '.c', '.c++', '.h', '.hh', '.hpp', '.hxx', '.h++'),
+    'Java':         '.java',
+    'Python':       '.py',
+    'C#':           '.cs',
+    'JavaScript':   '.js',
+    'Ada':          ('.adb', '.ads'),
+    'AppleScript':  ('.scpt', '.AppleScript'),
+    'BASIC':        ('.bas', '.b'),
+    'HTML':         ('.htm', '.html'),
+    'XML':          '.xml',
+    'Haskell':      '.hs',
+    'MATLAB':       '.m',
+    'Pascal':       ('.p', '.pas', '.pl', '.pascal'),
+    'Perl':         '.pl',
+    'PHP':          ('.php', '.php3', '.php4', '.php5', '.phps'),
+    'PowerShell':   '.ps1',
+    'Ruby':         '.rb',
+    'SQL':          '.sql'
+}
