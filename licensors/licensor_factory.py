@@ -6,8 +6,8 @@ class LicenseNotSupportedError(Exception):
     pass
 
 
-def get_licensor(license_name):
+def get_licensor(license_name, root_path, owner, recursive=False):
     licensor = get_first(License.__subclasses__(), lambda c: c.NAME.lower() == license_name.lower())
     if licensor is None:
         raise LicenseNotSupportedError("'{0}' license is not supported.".format(license_name))
-    return licensor()
+    return licensor(root_path, owner, recursive)
