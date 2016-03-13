@@ -1,43 +1,80 @@
-COMMENT_STYLES = {
-    'C':            ('/**', '*/'),
-    'C++':          ('/**', '*/'),
-    'Java':         ('/**', '*/'),
-    'Python':       '#',
-    'C#':           ('/**', '*/'),
-    'JavaScript':   ('/**', '*/'),
-    'Ada':          '--',
-    'AppleScript':  '--',
-    'BASIC':        'REM',
-    'HTML':         ('<!--', '-->'),
-    'XML':          ('<!--', '-->'),
-    'Haskell':      ('{-', '-}'),
-    'MATLAB':       ('%{', '%}'),
-    'Pascal':       ('(*', '*)'),
-    'Perl':         '#',
-    'PHP':          ('/**', '*/'),
-    'PowerShell':   ('<#', '#>'),
-    'Ruby':         '#',
-    'SQL':          '--'
-}
+LANGUAGES = {
+    'C': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.c', '.h']
+    },
+    'C++': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.cc', '.cpp', '.cxx', '.c', '.c++', '.h', '.hh', '.hpp', '.hxx', '.h++']
+    },
+    'Java': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.java']
+    },
+    'Python': {
+        'comment': ['#'],
+        'extensions': ['.py']
+    },
+    'C#': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.cs']
+    },
+    'JavaScript': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.js']
+    },
+    'Ada': {
+        'comment': ['--'],
+        'extensions': ['.adb', '.ads']
+    },
+    'AppleScript': {
+        'comment': ['--'],
+        'extensions': ['.scpt', '.AppleScript']
+    },
+    'BASIC': {
+        'comment': ['REM'],
+        'extensions': ['.bas', '.b']
+    },
+    'HTML': {
+        'comment': ['<!--', '-->'],
+        'extensions': ['.htm', '.html']
+    },
+    'XML': {
+        'comment': ['<!--', '-->'],
+        'extensions': ['.xml']
+    },
+    'Haskell': {
+        'comment': ['{-', '-}'],
+        'extensions': ['.hs']
+    },
+    'MATLAB': {
+        'comment': ['%{', '%}'],
+        'extensions': ['.m']
 
-FILE_EXTENSIONS = {
-    'C':            ('.c', '.h'),
-    'C++':          ('.cc', '.cpp', '.cxx', '.c', '.c++', '.h', '.hh', '.hpp', '.hxx', '.h++'),
-    'Java':         '.java',
-    'Python':       '.py',
-    'C#':           '.cs',
-    'JavaScript':   '.js',
-    'Ada':          ('.adb', '.ads'),
-    'AppleScript':  ('.scpt', '.AppleScript'),
-    'BASIC':        ('.bas', '.b'),
-    'HTML':         ('.htm', '.html'),
-    'XML':          '.xml',
-    'Haskell':      '.hs',
-    'MATLAB':       '.m',
-    'Pascal':       ('.p', '.pas', '.pl', '.pascal'),
-    'Perl':         '.pl',
-    'PHP':          ('.php', '.php3', '.php4', '.php5', '.phps'),
-    'PowerShell':   '.ps1',
-    'Ruby':         '.rb',
-    'SQL':          '.sql'
+    },
+    'Pascal': {
+        'comment': ['[*', '*]'],
+        'extensions': ['.p', '.pas', '.pl', '.pascal']
+    },
+    'Perl': {
+        'comment': ['#'],
+        'extensions': ['.pl']
+    },
+    'PHP': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.php', '.php3', '.php4', '.php5', '.phps']
+    },
+    'PowerShell': {
+        'comment': ['<#', '#>'],
+        'extensions': ['.ps1']
+
+    },
+    'Ruby': {
+        'comment': ['#'],
+        'extensions': ['.rb']
+    },
+    'SQL': {
+        'comment': ['--'],
+        'extensions': ['.sql']
+    }
 }

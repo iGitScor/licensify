@@ -5,6 +5,9 @@ from datetime import datetime
 from utils.collection_utils import get_first
 import config
 
+COMMENT = 'comment'
+EXTENSIONS = 'extensions'
+
 
 class LanguageNotSupportedError(Exception):
     pass
@@ -28,29 +31,13 @@ class License:
             with open(file_path, 'w') as file:
                 file.write(contents)
 
-    @staticmethod
-    def __match_extension(target_extension, language_extensions_pair):
-        target_extension = target_extension.strip()
-        if type(language_extensions_pair[1]) is str:
-            ext = language_extensions_pair[1]
-            return target_extension == ext.strip()
-        elif len(language_extensions_pair) is 1:
-            ext = language_extensions_pair[1][0]
-            return target_extension == ext.strip()
-        else:
-            return get_first(language_extensions_pair[1], lambda x: target_extension == x.strip()) is not None
-
     @classmethod
-    def put_in_comment_block(cls, block, language):
-        if language not in config.COMMENT_STYLES:
-            raise ValueError("Language '{0}''s comment style not defined in config.COMMENT_STYLES".format(language))
-
-        comment_style = config.COMMENT_STYLES[language]
-        if type(comment_style) == str:
+    def put_in_comment_block(cls, block, comment_style):
+        if len(comment_style) is 1:
             # Single line comment style
             commented_header = ''
             for line in block.splitlines():
-                commented_header += comment_style + ' ' + line + os.linesep
+                commented_header += comment_style[0] + ' ' + line + os.linesep
             return commented_header
         else:
             # Multi-line comment style
@@ -60,12 +47,17 @@ class License:
     def get_commented_header(cls, header_contents, file_name):
         # If no file extension, treat the entire file name as extension (e.g: for Makefile)
         target_extension = file_name[max(0, max(file_name.rfind('.'), file_name.rfind(os.path.sep) + 1)):].strip()
-        language_ext_pair = get_first(config.FILE_EXTENSIONS.items(),
-                                      lambda ext: cls.__match_extension(target_extension, ext))
-        if language_ext_pair is None:
+
+        # Get first language that has the target_extension as one of the file extensions
+        language = get_first(config.LANGUAGES.items(),
+                             lambda lang: get_first(lang[1][EXTENSIONS],
+                                                    lambda extension: target_extension.strip() == extension.strip()) is not None)
+
+        if language is None:
             raise LanguageNotSupportedError(file_name)
 
-        return cls.put_in_comment_block(header_contents, language_ext_pair[0])
+        comment_style = language[1][COMMENT]
+        return cls.put_in_comment_block(header_contents, comment_style)
 
     def apply_header(self, header_contents):
         ignored_files = []
