@@ -1,6 +1,6 @@
 import os
 
-from licensors.licensors import License
+from licensors.license import License
 from datetime import datetime
 
 

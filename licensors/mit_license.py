@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from licensors.licensors import License
+from licensors.license import License
 
 
 class MITLicense(License):
