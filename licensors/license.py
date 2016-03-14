@@ -87,13 +87,14 @@ class License:
         for root, _, files in os.walk(self.root_path):
             file_names = [os.path.join(root, f) for f in files]
             for filename in file_names:
+                try:
+                    commented_header = self.get_commented_header(header_contents, filename)
+                except LanguageNotSupportedError:
+                    ignored_files.append(filename)
+                    continue
+
                 with open(filename, 'r+') as f:
                     file_contents = f.read()
-                    try:
-                        commented_header = self.get_commented_header(header_contents, filename)
-                    except LanguageNotSupportedError:
-                        ignored_files.append(filename)
-                        continue
                     file_contents = self.prepend_header(commented_header, file_contents)
                     f.seek(0)
                     f.write(file_contents)
