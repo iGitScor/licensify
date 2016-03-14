@@ -23,15 +23,12 @@ class ApacheV2License(License):
                 .replace(self.YEAR_TEMPLATE, str(datetime.now().year)) \
                 .replace(self.OWNER_TEMPLATE, self.owner)
 
+        # Notice contents == header contents for Apache v2
         modified_files, ignored_files = self.apply_header(notice_contents)
 
-        license_file_path = os.path.join(self.root_path, self.LICENSE_FILE)
-        notice_file_path = os.path.join(self.root_path, self.NOTICE_FILE)
-        self.write_files({
-            license_file_path: license_contents,
-            notice_file_path: notice_contents
-        })
+        modified_files.extend(self.write_files_to_root({
+            self.LICENSE_FILE: license_contents,
+            self.NOTICE_FILE: notice_contents
+        }))
 
-        modified_files.append(license_file_path)
-        modified_files.append(notice_file_path)
         return modified_files, ignored_files

@@ -25,11 +25,13 @@ class License:
     def apply_license(self):
         pass
 
-    @staticmethod
-    def write_files(files):
+    def write_files_to_root(self, files):
+        created_files = []
         for file_name, contents in files.items():
-            with open(file_name, 'w') as file:
+            created_files.append(os.path.join(self.root_path, file_name))
+            with open(created_files[-1], 'w') as file:
                 file.write(contents)
+        return created_files
 
     @classmethod
     def put_in_comment_block(cls, block, comment_style):

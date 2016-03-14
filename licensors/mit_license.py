@@ -23,8 +23,6 @@ class MITLicense(License):
                 .replace(self.YEAR_TEMPLATE, year) \
                 .replace(self.OWNER_TEMPLATE, self.owner)
 
-        license_file_path = os.path.join(self.root_path, self.LICENSE_FILE)
-        self.write_files({license_file_path: license_contents})
-        modified_files.append(license_file_path)
+        modified_files.extend(self.write_files_to_root({self.LICENSE_FILE: license_contents}))
 
         return modified_files, ignored_files
