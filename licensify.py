@@ -7,7 +7,8 @@ from licensors.licensor_factory import get_licensor
 
 
 def main(arguments):
-    licensor = get_licensor(arguments.license, arguments.path, arguments.project_name, arguments.owner, arguments.recursive)
+    licensor = get_licensor(arguments.license, arguments.path, arguments.project_name, arguments.owner,
+                            arguments.recursive)
     modified_files, ignored_files = licensor.apply_license()
 
     print('Modified/Created files:')
@@ -27,7 +28,8 @@ if __name__ == '__main__':
     parser.add_argument('owner', help='The owner of the project.')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='Enable complete stack trace for unhandled exceptions')
-    parser.add_argument('-r', '--recursive', action='store_true', help='Recursively travel inside the project root')
+    parser.add_argument('-r', '--recursive', action='store_true',
+                        help='Recursively travel inside the project root to apply the headers')
     args = parser.parse_args()
 
     try:
