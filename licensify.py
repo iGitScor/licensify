@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
 import sys
 from licensors.licensor_factory import get_licensor
 
 
 def main(arguments):
     licensor = get_licensor(arguments.license, arguments.path, arguments.owner, arguments.recursive)
-    licensor.apply_license()
+    modified_files, ignored_files = licensor.apply_license()
+
+    print('Modified/Created files:')
+    for file in modified_files:
+        print(file)
+
+    print(os.linesep + 'Ignored files because of unknown file extensions:')
+    for file in ignored_files:
+        print(file)
 
 
 if __name__ == '__main__':

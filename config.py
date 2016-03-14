@@ -78,3 +78,8 @@ LANGUAGES = {
         'extensions': ['.sql']
     }
 }
+
+LICENSES = {
+    'ApacheV2': 'licensors.apachev2_license.ApacheV2License',
+    'MIT': 'licensors.mit_license.MITLicense'
+}
