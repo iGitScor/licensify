@@ -6,12 +6,12 @@ class LicenseNotSupportedError(Exception):
     pass
 
 
-def get_licensor(license_name, root_path, owner, recursive=False):
+def get_licensor(license_name, root_path, project_name, owner, recursive=False):
     matched_license = get_first(config.LICENSES.items(), lambda l: l[0].lower().strip() == license_name.lower().strip())
     if matched_license is None:
         raise LicenseNotSupportedError("'{0}' license is not supported.".format(license_name))
     licensor = get_class(matched_license[1])
-    return licensor(root_path, owner, recursive)
+    return licensor(root_path, project_name, owner, recursive)
 
 
 def get_class(kls):

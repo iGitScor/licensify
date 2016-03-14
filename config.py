@@ -81,5 +81,6 @@ LANGUAGES = {
 
 LICENSES = {
     'ApacheV2': 'licensors.apachev2_license.ApacheV2License',
-    'MIT': 'licensors.mit_license.MITLicense'
+    'MIT': 'licensors.mit_license.MITLicense',
+    'GPLV3': 'licensors.gplv3_license.GPLV3License'
 }

@@ -11,8 +11,8 @@ class ApacheV2License(License):
     YEAR_TEMPLATE = '{year}'
     OWNER_TEMPLATE = '{owner}'
 
-    def __init__(self, root_path, owner, recursive):
-        super().__init__(root_path, owner, recursive)
+    def __init__(self, root_path, project_name, owner, recursive):
+        super().__init__(root_path, project_name, owner, recursive)
 
     def apply_license(self):
         with open(os.path.join(self.TEMPLATE_DIR, self.LICENSE_FILE), 'r') as license_file:

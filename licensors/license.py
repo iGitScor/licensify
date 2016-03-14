@@ -15,8 +15,9 @@ class LanguageNotSupportedError(Exception):
 class License:
     __metaclass__ = ABCMeta
 
-    def __init__(self, root_path, owner, recursive):
+    def __init__(self, root_path, project_name, owner, recursive):
         self.root_path = root_path
+        self.project_name = project_name
         self.owner = owner
         self.recursive = recursive
 

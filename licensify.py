@@ -7,7 +7,7 @@ from licensors.licensor_factory import get_licensor
 
 
 def main(arguments):
-    licensor = get_licensor(arguments.license, arguments.path, arguments.owner, arguments.recursive)
+    licensor = get_licensor(arguments.license, arguments.path, arguments.project_name, arguments.owner, arguments.recursive)
     modified_files, ignored_files = licensor.apply_license()
 
     print('Modified/Created files:')
@@ -22,6 +22,7 @@ def main(arguments):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('path', help='The path to the project root')
+    parser.add_argument('project_name', help='The name of the project, as it should appear on the license')
     parser.add_argument('license', help='The name of the license. See config.py')
     parser.add_argument('owner', help='The owner of the project.')
     parser.add_argument('-d', '--debug', action='store_true',
