@@ -40,7 +40,9 @@ class License:
             return commented_header
         else:
             # Multi-line comment style
-            return '{0}{1}{2}{1}{3}'.format(comment_style[0], os.linesep, block, comment_style[1])
+            return '{0}{1}{2}{1}{3}'.format(comment_style[0], os.linesep,
+                                            ' ' + block.replace(os.linesep, os.linesep + ' '),
+                                            comment_style[1])
 
     @classmethod
     def get_commented_header(cls, header_contents, file_name):
@@ -70,11 +72,11 @@ class License:
                 shebang_index += 1
             else:
                 if line.strip().startswith(SHE_BANG):
-                    lines.insert(shebang_index + 1, 2*os.linesep + header + 2*os.linesep)
+                    lines.insert(shebang_index + 1, 2 * os.linesep + header + 2 * os.linesep)
                     return os.linesep.join(lines)
                 else:
                     break
-        return header + 2*os.linesep + file_contents
+        return header + 2 * os.linesep + file_contents
 
     def apply_header(self, header_contents):
         ignored_files = []
