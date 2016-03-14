@@ -5,6 +5,7 @@ import config
 
 COMMENT = 'comment'
 EXTENSIONS = 'extensions'
+SHE_BANG = '#!'
 
 
 class LanguageNotSupportedError(Exception):
@@ -49,7 +50,8 @@ class License:
         # Get first language that has the target_extension as one of the file extensions
         language = get_first(config.LANGUAGES.items(),
                              lambda lang: get_first(lang[1][EXTENSIONS],
-                                                    lambda extension: target_extension.strip() == extension.strip()) is not None)
+                                                    lambda
+                                                        extension: target_extension.strip() == extension.strip()) is not None)
 
         if language is None:
             raise LanguageNotSupportedError(
@@ -58,6 +60,21 @@ class License:
 
         comment_style = language[1][COMMENT]
         return cls.put_in_comment_block(header_contents, comment_style)
+
+    @staticmethod
+    def prepend_header(header, file_contents):
+        lines = file_contents.splitlines()
+        shebang_index = 0
+        for line in lines:
+            if line.strip() == '':
+                shebang_index += 1
+            else:
+                if line.strip().startswith(SHE_BANG):
+                    lines.insert(shebang_index + 1, 2*os.linesep + header + 2*os.linesep)
+                    return os.linesep.join(lines)
+                else:
+                    break
+        return header + 2*os.linesep + file_contents
 
     def apply_header(self, header_contents):
         ignored_files = []
@@ -69,10 +86,10 @@ class License:
                     file_contents = f.read()
                     try:
                         commented_header = self.get_commented_header(header_contents, filename)
-                    except LanguageNotSupportedError as e:
+                    except LanguageNotSupportedError:
                         ignored_files.append(filename)
                         continue
-                    file_contents = commented_header + os.linesep + os.linesep + file_contents
+                    file_contents = self.prepend_header(commented_header, file_contents)
                     f.seek(0)
                     f.write(file_contents)
                     f.truncate()
