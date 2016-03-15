@@ -30,7 +30,7 @@ See the ```LICENSES``` dictionary in ```config.py``` for all the supported licen
 Every license generation class should meet the the following API:
 
 * A constructor that takes these arguments: ```(root_path: str, project_name: str, owner: str, recursive: bool)```
-* The method ```apply_license()``` that applies the license.
+* The method ```apply_license()``` that applies the license. This method should return two lists: (i) the modified/created files, and (ii) ignored files (unknown file extensions, etc.).
 * A key-value pair be added to the ```LICENSES``` dictionary in ```config.py``` so that the factory can see it.
 
 It is recommended that the new class extends the ```licensors.license.License``` class, as it provides some useful methods. See the existing subclasses for guidance.
