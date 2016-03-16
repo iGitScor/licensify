@@ -97,6 +97,10 @@ LANGUAGES = {
     'Style': {
         'comment': ['/**', '*/'],
         'extensions': ['.css', '.less', '.sass', '.scss']
+    },
+    'Scala': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.scala']
     }
 }
 
