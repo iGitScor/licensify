@@ -1,5 +1,7 @@
 ##Licensify
 
+![](https://raw.githubusercontent.com/udeyrishi/licensify/master/logo.png)
+
 Licensify is an app for adding licenses to projects. Features include:
 
 1. adding license header stubs to all of your source code files
