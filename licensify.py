@@ -18,7 +18,7 @@
 import argparse
 import os
 import sys
-from licensors.licensor_factory import get_licensor
+from licenses import get_licensor
 
 
 def main(arguments):

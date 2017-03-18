@@ -14,6 +14,9 @@
 
 
 LANGUAGES = {
+    # This dictionary contains all the supported languages, the comment patterns it uses, and the
+    # corresponding file extensions. The list 'comment' should be either of size 1 or 2. Size 1
+    # implies single-line comments (like // or #); size 2 implies block comments (like /* ... */).
     'C': {
         'comment': ['/**', '*/'],
         'extensions': ['.c', '.h']
@@ -105,7 +108,9 @@ LANGUAGES = {
 }
 
 LICENSES = {
-    'ApacheV2': 'licensors.apachev2_license.ApacheV2License',
-    'MIT': 'licensors.mit_license.MITLicense',
-    'GPLV3': 'licensors.gplv3_license.GPLV3License'
+    # This dictionary contains all the supported licenses (names are case-insenstive), and the
+    # corresponding licensor class that does the work. See the licenses module for details.
+    'ApacheV2': 'licenses.ApacheV2License',
+    'MIT': 'licenses.MITLicense',
+    'GPLV3': 'licenses.GPLV3License'
 }
