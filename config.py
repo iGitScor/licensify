@@ -104,6 +104,10 @@ LANGUAGES = {
     'Scala': {
         'comment': ['/**', '*/'],
         'extensions': ['.scala']
+    },
+    'Kotlin': {
+        'comment': ['/**', '*/'],
+        'extensions': ['.kt']
     }
 }
 
